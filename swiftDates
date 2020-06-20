@@ -1,0 +1,28 @@
+//So, what needs to happen?
+//In setup: We dictate the intended duration of the workout. That's workoutTime
+//When user hits play, that time is saved as startTime
+//Every second(?)we find the elapsdTime since startTime  (time now - startTime)
+//…and find the difference between workoutTime and elapsedTime
+//that time is converted to MMSS and displayed
+
+
+import UIKit
+
+let sNow = Date()
+sNow.timeIntervalSinceReferenceDate
+
+let desiredTimeMinutes: Int = 15 //how long do I want my workout to be
+var desiredTimeSeconds: Int = desiredTimeMinutes * 60 //how many seconds long is that workout
+
+let currentSeconds = Int(sNow.timeIntervalSinceReferenceDate) // Current time is Truncated to Int. MS are thrown away. I don't miss them at all.
+
+var finishTime = currentSeconds + desiredTimeSeconds //the workout will finish at this time
+
+var timeRemian = finishTime % desiredTimeSeconds  //unclear on this step. This is the time remaining in the workout
+
+func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+  return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+}
+
+secondsToHoursMinutesSeconds(seconds: timeRemian)
+
